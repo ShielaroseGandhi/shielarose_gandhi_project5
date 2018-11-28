@@ -1,0 +1,16 @@
+.navigation {
+   background: rgb(230, 199, 209);
+   padding: 10px 0;
+   &-flex {
+      @include flex(row);
+      justify-content: space-between;
+   }
+   h1 {
+      margin: 0;
+   }
+   ul {
+      @include flex(row);
+      justify-content: space-between;
+      width: 60px;
+   }
+}

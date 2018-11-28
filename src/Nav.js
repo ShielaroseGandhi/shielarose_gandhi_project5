@@ -4,11 +4,13 @@ class Nav extends Component {
    render() {
       return (
             <nav className="navigation">
-               <h2>Noted</h2>
-               <ul>
-                  <li>+</li>
-                  <li>Profile</li>
-               </ul>
+               <div className="wrapper navigation-flex">
+                  <h1>Noted</h1>
+                  <ul>
+                     <li>+</li>
+                     <li>Profile</li>
+                  </ul>
+               </div>
             </nav>
       )
    }

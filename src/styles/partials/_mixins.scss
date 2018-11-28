@@ -1,0 +1,13 @@
+// FONT MIXINS
+@mixin base-font($size-value){
+   font-size: $size-value * 1px;
+   font-size: ($size-value/10) * 1rem;
+}
+
+// FLEX 
+@mixin flex($column-or-row){
+   display: flex;
+   flex-direction: $column-or-row;
+   justify-content: center;
+   align-items: center;
+}
