@@ -11,6 +11,6 @@
    ul {
       @include flex(row);
       justify-content: space-between;
-      width: 60px;
+      width: 100px;
    }
 }

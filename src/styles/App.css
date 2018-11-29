@@ -185,4 +185,12 @@ body {
     justify-content: center;
     align-items: center;
     justify-content: space-between;
-    width: 60px; }
+    width: 100px; }
+
+.side-bar {
+  background: white;
+  height: calc(100vh - 50.5px);
+  text-align: right; }
+  .side-bar ul li {
+    padding-top: 25px;
+    border-bottom: 1px solid grey; }

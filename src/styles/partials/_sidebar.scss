@@ -1,0 +1,11 @@
+.side-bar {
+   background: white;
+   height: calc(100vh - 50.5px);
+   text-align: right;
+   ul {
+      li {
+         padding-top: 25px;
+         border-bottom: 1px solid grey;
+      }
+   }
+}

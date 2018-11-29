@@ -5,6 +5,9 @@ import Nav from './Nav';
 import Sidebar from './Sidebar';
 
 class App extends Component {
+  constructor(){
+    super()
+  }
   render() {
     return (
       <div className="App">
