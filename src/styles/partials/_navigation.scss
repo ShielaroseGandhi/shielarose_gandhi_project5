@@ -1,5 +1,5 @@
 .navigation {
-   background: rgb(230, 199, 209);
+   background: $pink;
    padding: 10px 0;
    &-flex {
       @include flex(row);
@@ -11,6 +11,6 @@
    ul {
       @include flex(row);
       justify-content: space-between;
-      width: 100px;
+      width: 70px;
    }
 }
