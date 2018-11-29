@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './styles/App.css';
 import firebase from './firebase';
 import Nav from './Nav';
-import Sidebar from './Sidebar';
+import Notes from './Notes';
 
 class App extends Component {
   constructor(){
@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav />
-        <Sidebar />
+        <Notes />
       </div>
     );
   }

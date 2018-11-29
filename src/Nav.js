@@ -4,9 +4,7 @@ import HamburgerMenu from 'react-hamburger-menu';
 class Nav extends Component {
    constructor(){
       super()
-      this.state = {
-         menuOpen: false
-      }
+      this.state = {}
    }
    handleClick() {
       this.setState({
@@ -27,7 +25,7 @@ class Nav extends Component {
                      <li>+</li>
                      <li>Profile</li>
                      {<HamburgerMenu
-                        isOpen={this.state.open}
+                        isOpen={this.state.menuOpen}
                         menuClicked={this.handleClick.bind(this)}
                         width={18}
                         height={15}
