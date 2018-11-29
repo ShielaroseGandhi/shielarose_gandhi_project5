@@ -211,10 +211,10 @@ form {
 input[type=text] {
   font-size: 20px;
   font-size: 2rem;
-  width: 90%;
   border: none;
-  border-bottom: 1px solid #a8a6a6;
-  padding: 15px 2px; }
+  border-radius: 5px;
+  width: 100%;
+  padding: 15px; }
 
 textarea {
   resize: none;

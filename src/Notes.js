@@ -5,6 +5,7 @@ import autosize from 'autosize';
 class Notes extends Component {
    componentDidMount() {
       autosize(this.textarea);
+
    }
    render() {
       return (
@@ -12,9 +13,9 @@ class Notes extends Component {
             <form action="">
                <div className="note-container">
                   <label className="visuallyhidden" htmlFor="title">Title</label>
-                  <input onChange={this.props.handleChange} name="title" type="text" id="title" placeholder="Title" />
+                  <input onChange={this.props.handleChange} value={this.props.title} name="title" type="text" id="title" placeholder="Title" />
    
-                  <textarea onChange={this.props.handleChange} name="note" id="note" ref={c => this.textarea = c} placeholder="Add a new note..."></textarea>
+                  <textarea onChange={this.props.handleChange} name="note" value={this.props.note} id="note" ref={c => this.textarea = c} placeholder="Add a new note..."></textarea>
                </div>
 
                <div className="submit-button">

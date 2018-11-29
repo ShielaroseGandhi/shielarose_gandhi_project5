@@ -3,6 +3,7 @@ import './styles/App.css';
 import firebase from './firebase';
 import Nav from './Nav';
 import Notes from './Notes';
+import today from './date';
 
 const dbRef = firebase.database().ref();
 
@@ -22,19 +23,7 @@ class App extends Component {
   }
   addNoteOnSubmit = e => {
     e.preventDefault();
-    // create a copy of the completeNotes array in state
-    let today = new Date();
-    let dd = today.getDate();
-    let mm = today.getMonth() + 1; //January is 0!
-    let yyyy = today.getFullYear();
 
-    if (dd < 10) {
-      dd = '0' + dd
-    }
-    if (mm < 10) {
-      mm = '0' + mm
-    }
-    today = mm + '/' + dd + '/' + yyyy;
     const newNote = {
       title: this.state.title,
       note: this.state.note,
@@ -47,10 +36,9 @@ class App extends Component {
         title: "",
         note: ""
       })
-    }
+    } 
   }
   handleChange = e => {
-    console.log(e.target.value)
     this.setState({
       [e.target.name]: e.target.value
     })
@@ -62,6 +50,8 @@ class App extends Component {
         <Notes 
           handleChange={this.handleChange} 
           addNoteOnSubmit={this.addNoteOnSubmit}
+          title={this.state.title}
+          note={this.state.note}
         />
         <section>
           {
@@ -69,8 +59,8 @@ class App extends Component {
               return (
                 <div key={note[0]}>
                   <h2>{note[1].title}</h2>
-                  <p>{note[1].note}</p>
                   <p>{note[1].date}</p>
+                  <p>{note[1].note}</p>
                 </div>
               )           
             })
