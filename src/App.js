@@ -13,10 +13,16 @@ class App extends Component {
       completeNotes: [],
     }
   }
+  componentDidMount(){
+    dbRef.on('value', (snapshot) => {
+      this.setState({
+        completeNotes: snapshot.val()
+      })
+    })
+  }
   addNoteOnSubmit = e => {
     e.preventDefault();
     // create a copy of the completeNotes array in state
-    const completeNotesCopy = Array.from(this.state.completeNotes);
     let today = new Date();
     let dd = today.getDate();
     let mm = today.getMonth() + 1; //January is 0!
@@ -34,11 +40,10 @@ class App extends Component {
       note: this.state.note,
       date: today
     }
-    // push the newNote object into the completeNotesCopy array
-    completeNotesCopy.push(newNote)
+    // push newNote into firebase
     if(this.state.note !== ""){
+      dbRef.push(newNote);
       this.setState({
-        completeNotes: completeNotesCopy,
         title: "",
         note: ""
       })
