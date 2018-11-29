@@ -62,8 +62,20 @@ class App extends Component {
         <Notes 
           handleChange={this.handleChange} 
           addNoteOnSubmit={this.addNoteOnSubmit}
-          
         />
+        <section>
+          {
+            Object.entries(this.state.completeNotes).map(note => {
+              return (
+                <div key={note[0]}>
+                  <h2>{note[1].title}</h2>
+                  <p>{note[1].note}</p>
+                  <p>{note[1].date}</p>
+                </div>
+              )           
+            })
+          }
+        </section>
       </div>
     );
   }
