@@ -167,6 +167,9 @@ body {
   width: 90%;
   margin: 0 auto; }
 
+#line-break {
+  white-space: pre-line; }
+
 .navigation {
   background: #e6c7d1;
   padding: 10px 0; }

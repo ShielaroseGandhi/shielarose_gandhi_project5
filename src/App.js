@@ -60,7 +60,7 @@ class App extends Component {
                 <div key={note[0]}>
                   <h2>{note[1].title}</h2>
                   <p>{note[1].date}</p>
-                  <p>{note[1].note}</p>
+                  <p id="line-break">{note[1].note}</p>
                 </div>
               )           
             })
