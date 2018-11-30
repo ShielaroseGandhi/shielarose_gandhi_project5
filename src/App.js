@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './styles/App.css';
 import firebase from './firebase';
 import Nav from './Nav';
+import Sidebar from './Sidebar';
 import Notes from './Notes';
 import today from './date';
 
@@ -12,6 +13,9 @@ class App extends Component {
     super()
     this.state = {
       completeNotes: [],
+      menuIsOpen: false,
+      title: "",
+      note: ""
     }
   }
   componentDidMount(){
@@ -21,7 +25,7 @@ class App extends Component {
       })
     })
   }
-  addNoteOnSubmit = e => {
+  addNoteOnSubmit = (e) => {
     e.preventDefault();
 
     const newNote = {
@@ -38,24 +42,43 @@ class App extends Component {
       })
     } 
   }
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     })
   }
+
+  toggleMenu = () => {
+    this.setState({ menuIsOpen: !this.state.menuIsOpen });
+  }
+
   render() {
+    const {
+      completeNotes,
+      title,
+      note,
+      menuIsOpen,
+    } = this.state;
+
     return (
       <div className="App">
-        <Nav />
+        <Nav
+          toggleMenu={this.toggleMenu}
+          isOpen={menuIsOpen}
+        />
+        { menuIsOpen &&
+          <Sidebar />
+        }
         <Notes 
           handleChange={this.handleChange} 
           addNoteOnSubmit={this.addNoteOnSubmit}
-          title={this.state.title}
-          note={this.state.note}
+          title={title}
+          note={note}
         />
         <section>
           {
-            Object.entries(this.state.completeNotes).map(note => {
+            Object.entries(completeNotes).map(note => {
               return (
                 <div key={note[0]}>
                   <h2>{note[1].title}</h2>

@@ -8,12 +8,16 @@ form {
    border-radius: 5px;
 }
 
-input[type=text]{
+.title {
    @include base-font(20);
    border: none;
    border-radius: 5px;
    width: 100%;
    padding: 15px; 
+}
+
+.hidden {
+   display: none;
 }
 
 textarea {

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
-// import HamburgerMenu from 'react-hamburger-menu';
+import HamburgerMenu from 'react-hamburger-menu';
 
 class Nav extends Component {
-   // handleClick() {
-   //    this.setState({
-   //       menuOpen: !this.state.menuOpen
-   //    });
-   // }
-   // handleLinkClick() {
-   //    this.setState({ 
-   //       menuOpen: false 
-   //    });
-   // }
+   constructor(props) {
+      super();
+      this.state = {
+         open: false,
+      }
+   }
+
+   handleClick = () => {
+      const { toggleMenu } = this.props;
+      toggleMenu()
+      this.setState({ open: !this.state.open });
+   }
+
    render() {
       return (
             <nav className="navigation">
@@ -20,9 +23,9 @@ class Nav extends Component {
                   <ul>
                      <li>+</li>
                      <li>Profile</li>
-                     {/* {<HamburgerMenu
-                        isOpen={this.state.menuOpen}
-                        menuClicked={this.handleClick.bind(this)}
+                     <HamburgerMenu
+                        isOpen={this.state.open}
+                        menuClicked={this.handleClick}
                         width={18}
                         height={15}
                         strokeWidth={1}
@@ -30,7 +33,7 @@ class Nav extends Component {
                         color='black'
                         borderRadius={0}
                         animationDuration={0.5}
-                     />} */}
+                     />
                   </ul>
                </div>
             </nav>
