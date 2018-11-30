@@ -55,10 +55,9 @@ class App extends Component {
   }
 
   deleteNote = e => {
-    console.log(e.target)
-    // const firebaseKey = e.target.id;
-    // const noteRef = firebase.database().ref(`/${firebaseKey}`);
-    // noteRef.remove();
+    const firebaseKey = e.target.parentElement.id;
+    const noteRef = firebase.database().ref(`/${firebaseKey}`);
+    noteRef.remove();
   }
 
   render() {
@@ -84,10 +83,15 @@ class App extends Component {
           title={title}
           note={note}
         />
+        { completeNotes !== null
+        ? 
         <NoteDisplay 
           completeNotes = {completeNotes}
           deleteNote = {this.deleteNote}
         />
+        :
+        <p>no notes to display :(</p>
+      }
       </div>
     );
   }

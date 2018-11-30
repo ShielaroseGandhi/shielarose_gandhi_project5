@@ -12,7 +12,7 @@ const NoteDisplay = (props) => {
                      <h2 className="saved-note-title">{note[1].title}</h2>
                      <p className="saved-note-date">{note[1].date}</p>
                      <p id="line-break" className="saved-note-note">{note[1].note}</p>
-                     <FontAwesomeIcon icon={faTrashAlt} className="trash-icon" id={note[0]} onClick={props.deleteNote}/>
+                     <FontAwesomeIcon icon={faTrashAlt} id={note[0]} className="trash-icon" onClick={props.deleteNote}/>
                   </div>               
                )
             })
