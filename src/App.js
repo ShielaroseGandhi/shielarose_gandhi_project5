@@ -76,7 +76,7 @@ class App extends Component {
           title={title}
           note={note}
         />
-        <section>
+        <section className="note-display">
           {
             Object.entries(completeNotes).map(note => {
               return (
