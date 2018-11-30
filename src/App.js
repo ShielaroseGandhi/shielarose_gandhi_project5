@@ -4,6 +4,7 @@ import firebase from './firebase';
 import Nav from './Nav';
 import Sidebar from './Sidebar';
 import Notes from './Notes';
+import NoteDisplay from './NoteDisplay'
 import today from './date';
 
 const dbRef = firebase.database().ref();
@@ -76,19 +77,11 @@ class App extends Component {
           title={title}
           note={note}
         />
-        <section className="note-display">
-          {
-            Object.entries(completeNotes).map(note => {
-              return (
-                <div key={note[0]}>
-                  <h2>{note[1].title}</h2>
-                  <p>{note[1].date}</p>
-                  <p id="line-break">{note[1].note}</p>
-                </div>
-              )           
-            })
-          }
-        </section>
+        <NoteDisplay 
+          completeNotes = {completeNotes}
+          
+
+        />
       </div>
     );
   }
