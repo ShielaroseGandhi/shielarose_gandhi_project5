@@ -1,10 +1,8 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
-const NoteDisplay = (props) => {
+const Trash = (props) => {
    return (
-      <section className="note-display inner-wrapper">
+      <section className="trash-page">
          {
             Object.entries(props.completeNotes).map(note => {
                return (
@@ -12,8 +10,8 @@ const NoteDisplay = (props) => {
                      <h2 className="saved-note-title">{note[1].title}</h2>
                      <p className="saved-note-date">{note[1].date}</p>
                      <p id="line-break" className="saved-note-note">{note[1].note}</p>
-                     <FontAwesomeIcon icon={faTrashAlt} className="trash-icon" id={note[0]} onClick={props.deleteNote}/>
-                  </div>               
+                     <FontAwesomeIcon icon={faTrashAlt} className="trash-icon" />
+                  </div>
                )
             })
          }
@@ -21,4 +19,4 @@ const NoteDisplay = (props) => {
    )
 }
 
-export default NoteDisplay;
+export default Trash;

@@ -54,6 +54,13 @@ class App extends Component {
     this.setState({ menuIsOpen: !this.state.menuIsOpen });
   }
 
+  deleteNote = e => {
+    console.log(e.target)
+    // const firebaseKey = e.target.id;
+    // const noteRef = firebase.database().ref(`/${firebaseKey}`);
+    // noteRef.remove();
+  }
+
   render() {
     const {
       completeNotes,
@@ -79,8 +86,7 @@ class App extends Component {
         />
         <NoteDisplay 
           completeNotes = {completeNotes}
-          
-
+          deleteNote = {this.deleteNote}
         />
       </div>
     );

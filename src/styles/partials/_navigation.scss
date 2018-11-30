@@ -1,6 +1,7 @@
 .navigation {
-   background: $pink;
+   background: $userChoice;
    padding: 10px 0;
+   box-shadow: 0 2px 2px $lightgray;
    &-flex {
       @include flex(row);
       justify-content: space-between;
@@ -11,6 +12,5 @@
    ul {
       @include flex(row);
       justify-content: space-between;
-      width: 100px;
    }
 }

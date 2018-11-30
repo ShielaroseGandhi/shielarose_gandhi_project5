@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import autosize from 'autosize';
 
-
 class Notes extends Component {
    constructor(){
       super()
@@ -23,7 +22,7 @@ class Notes extends Component {
    }
    render() {
       return (
-         <main className="notes wrapper">
+         <main className="notes inner-wrapper">
             <form action="">
                <div className="note-container">
                   <label className="visuallyhidden" htmlFor="title">Title</label>

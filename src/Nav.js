@@ -21,8 +21,6 @@ class Nav extends Component {
                <div className="wrapper navigation-flex">
                   <h1>Noted</h1>
                   <ul>
-                     <li>+</li>
-                     <li>Profile</li>
                      <HamburgerMenu
                         isOpen={this.state.open}
                         menuClicked={this.handleClick}

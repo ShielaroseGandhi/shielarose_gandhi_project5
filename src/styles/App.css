@@ -167,12 +167,15 @@ body {
   width: 90%;
   margin: 0 auto; }
 
-#line-break {
-  white-space: pre-line; }
+.inner-wrapper {
+  max-width: 1080px;
+  width: 80%;
+  margin: 0 auto; }
 
 .navigation {
   background: #e6c7d1;
-  padding: 10px 0; }
+  padding: 10px 0;
+  box-shadow: 0 2px 2px #a8a6a6; }
   .navigation-flex {
     display: flex;
     flex-direction: row;
@@ -186,8 +189,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    width: 100px; }
+    justify-content: space-between; }
 
 .side-bar {
   position: absolute;
@@ -205,7 +207,7 @@ body {
 form {
   text-align: center;
   margin: 50px auto 0 auto;
-  width: 90%; }
+  width: 100%; }
 
 .note-container {
   box-shadow: 0 0 5px gray;
@@ -233,11 +235,38 @@ textarea {
 
 input[type=submit] {
   width: 100%;
-  margin: 15px 0;
+  margin: 15px 0 30px 0;
   background: none;
   padding: 10px;
   border-radius: 5px;
-  border: 0.5px solid gray;
-  box-shadow: 1px 1px 1px gray; }
+  border: none;
+  box-shadow: 1px 1px 2px gray; }
   input[type=submit]:hover {
     background: #e6c7d1; }
+
+.note-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-items: flex-start;
+  padding-top: 30px;
+  border-top: 1px solid #a8a6a6; }
+
+.saved-note {
+  width: 100%;
+  margin-bottom: 30px;
+  padding: 0 15px;
+  overflow: hidden;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px #a8a6a6;
+  background: #e6c7d1;
+  position: relative; }
+
+#line-break {
+  white-space: pre-line; }
+
+.trash-icon {
+  position: absolute;
+  right: 15px;
+  bottom: 15px; }

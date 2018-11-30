@@ -12,7 +12,8 @@ body {
    margin: 0 auto;
 }
 
-
-#line-break {
-   white-space: pre-line;
+.inner-wrapper {
+   max-width: 1080px;
+   width: 80%;
+   margin: 0 auto;
 }
