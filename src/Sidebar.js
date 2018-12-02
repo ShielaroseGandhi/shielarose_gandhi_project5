@@ -15,7 +15,7 @@ class Sidebar extends Component {
          <div className="side-bar">
             <ul className="wrapper">
                <li>Notes</li>
-               <li>Calendar</li>
+               <li>Archive</li>
                <li>Trash</li>
             </ul>
          </div>
