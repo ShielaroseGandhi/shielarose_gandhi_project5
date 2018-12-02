@@ -203,6 +203,10 @@ body {
   .side-bar ul li {
     padding-top: 25px;
     border-bottom: 1px solid grey; }
+  .side-bar ul .link {
+    color: black; }
+  .side-bar ul .link-active {
+    font-weight: bold; }
 
 form {
   text-align: center;
@@ -260,13 +264,21 @@ input[type=submit] {
   overflow: hidden;
   border-radius: 5px;
   box-shadow: 1px 1px 3px #a8a6a6;
-  background: #e6c7d1;
-  position: relative; }
+  background: #e6c7d1; }
+  .saved-note-title {
+    margin: 0; }
+
+.icon-format {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px; }
 
 #line-break {
   white-space: pre-line; }
 
-.trash-icon {
-  position: absolute;
-  right: 15px;
-  bottom: 15px; }
+.icons {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between; }
+  .icons .icon {
+    margin-left: 15px; }

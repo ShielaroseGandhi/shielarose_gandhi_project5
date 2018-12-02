@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import HamburgerMenu from 'react-hamburger-menu';
+import Sidebar from './Sidebar';
 
 class Nav extends Component {
-   constructor(props) {
+   constructor() {
       super();
       this.state = {
          open: false,
@@ -34,6 +35,11 @@ class Nav extends Component {
                      />
                   </ul>
                </div>
+
+               {menuIsOpen &&
+                  <Sidebar />
+               }
+               
             </nav>
       )
    }

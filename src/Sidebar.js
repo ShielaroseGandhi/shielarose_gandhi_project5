@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
-
-// const hamburgerMenu = ['Notes', 'Calendar', 'Trash']
-// const menuItems = hamburgerMenu.map((val, i) => {
-//    return (
-//       <MenuItem
-//          key={index}
-//          delay={`${index * 0.1}s`}
-//          onClick={() => { this.handleLinkClick(); }}>{val}</MenuItem>)
-// });
+import { NavLink } from "react-router-dom";
 
 class Sidebar extends Component {
    render() {
       return (
          <div className="side-bar">
             <ul className="wrapper">
-               <li>Notes</li>
-               <li>Archive</li>
-               <li>Trash</li>
+               <li>
+                  <NavLink exact to="/" className="link" activeClassName="link-active">Notes</NavLink> 
+               </li>
+               <li>
+                  <NavLink exact to="/archive" className="link" activeClassName="link-active">Archive</NavLink>
+               </li>
+               <li>
+                  <NavLink exact to="/trash" className="link" activeClassName="link-active">Trash</NavLink>
+               </li>
             </ul>
          </div>
       )
