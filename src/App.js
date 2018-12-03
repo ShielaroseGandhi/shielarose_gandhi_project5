@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './styles/App.css';
-import firebase from './firebase';
+import firebase from './Other JS files/firebase';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faArchive } from '@fortawesome/free-solid-svg-icons'
 import Nav from './Nav';
-import Notes from './Notes';
-import Archive from './Archive';
-import Trash from './Trash';
-import today from './date';
+import Notes from './Components/AddNotes';
+import Archive from './Components/Archive';
+import Trash from './Components/Trash';
+import today from './Other JS files/date';
 
 const dbRef = firebase.database().ref();
 
