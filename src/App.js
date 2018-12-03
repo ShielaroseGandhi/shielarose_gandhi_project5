@@ -45,14 +45,13 @@ class App extends Component {
       date: today,
       archived: false,
       trash: false,
-      addClass: ""
     }
     // push newNote into firebase
     if(this.state.note !== ""){
       dbRef.push(newNote);
       this.setState({
         title: "",
-        note: ""
+        note: "",
       })
     } 
   }
