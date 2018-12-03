@@ -1,24 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { NavLink } from "react-router-dom";
 
-class Sidebar extends Component {
-   render() {
+const Sidebar = (props) => {
       return (
          <div className="side-bar">
             <ul className="wrapper">
                <li>
-                  <NavLink exact to="/" className="link" activeClassName="link-active">Notes</NavLink> 
+                  <NavLink exact to="/" className="link" activeClassName="link-active" onClick={props.handleClick}>Notes</NavLink> 
                </li>
                <li>
-                  <NavLink exact to="/archive" className="link" activeClassName="link-active">Archive</NavLink>
+                  <NavLink exact to="/archive" className="link" activeClassName="link-active" onClick={props.handleClick}>Archive</NavLink>
                </li>
                <li>
-                  <NavLink exact to="/trash" className="link" activeClassName="link-active">Trash</NavLink>
+                  <NavLink exact to="/trash" className="link" activeClassName="link-active" onClick={props.handleClick}>Trash</NavLink>
                </li>
             </ul>
          </div>
       )
-   }
 }
 
 export default Sidebar;

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './styles/App.css';
 import firebase from './firebase';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt, faArchive} from '@fortawesome/free-solid-svg-icons'
 import Nav from './Nav';
 import Notes from './Notes';
 import Archive from './Archive';
@@ -77,10 +79,6 @@ class App extends Component {
     dbRef.child(`/${id}`).update({ trash: true, archived: false });
   }
 
-  // moveFromTrashHandler = (id) => {
-  //   dbRef.child(`/${id}`).update({ trash: false });
-  // }
-
   deleteNote = noteId => {
     const firebaseKey = noteId;
     const noteRef = firebase.database().ref(`/${firebaseKey}`);
@@ -135,30 +133,49 @@ class App extends Component {
             <Route
               path="/archive"
               render={() => (
-                archivedNotes.length > 0
-                  ? 
-                  <Archive 
-                    archive = {completeNotes.filter((note) => note[1].archived === true && note[1].trash === false)}
-                    moveToNotesHandler = {this.moveToNotesHandler}
-                    trashHandler={this.trashHandler}
-                  />
-                  :
-                  <p>nothing in archive</p>
-              )}
+                <section className="wrapper archive">
+                  <h2 className="main-title">
+                    Archive <FontAwesomeIcon icon={faArchive} className="icon-title" />
+                  </h2>
+                  { archivedNotes.length > 0
+                    ? 
+                    <Archive 
+                      archive = {completeNotes.filter((note) => note[1].archived === true && note[1].trash === false)}
+                      moveToNotesHandler = {this.moveToNotesHandler}
+                      trashHandler={this.trashHandler}
+                      />
+                    :
+                    <div className="empty-section">
+                      <FontAwesomeIcon icon={faArchive} className="icon-main"/>
+                      <p>You have nothing in your archive</p>
+                    </div> 
+                  }
+                  </section>
+                )}
             />
             <Route
               path="/trash"
               render={() => (
-                trashNotes.length > 0
-                  ? 
-                  <Trash
-                    trash = {completeNotes.filter((note) => note[1].trash === true)}
-                    archiveHandler={this.archiveHandler}
-                    moveToNotesHandler={this.moveToNotesHandler}
-                    deleteNote={this.deleteNote}
-                  />
-                  :
-                  <p>no trash</p>
+                <section className="wrapper trash">
+                  <h2 className="main-title">
+                    Trash <FontAwesomeIcon icon={faTrashAlt} className="icon-title" />
+                  </h2>
+                  
+                  { trashNotes.length > 0
+                    ? 
+                    <Trash
+                      trash = {completeNotes.filter((note) => note[1].trash === true)}
+                      archiveHandler={this.archiveHandler}
+                      moveToNotesHandler={this.moveToNotesHandler}
+                      deleteNote={this.deleteNote}
+                    />
+                    :
+                    <div className="empty-section">
+                      <FontAwesomeIcon icon={faTrashAlt} className="icon-main" />
+                      <p>You have nothing in your trash</p>
+                    </div> 
+                  }
+                </section>
               )}
             />
           </Switch>

@@ -1,8 +1,7 @@
 .note-display {
    @include flex(column);
    align-items: flex-start;
-   padding-top: 30px;
-   border-top: 1px solid $lightgray;
+   padding-top: 15px;
 }
 
 .saved-note {

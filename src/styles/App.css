@@ -169,8 +169,30 @@ body {
 
 .inner-wrapper {
   max-width: 1080px;
-  width: 80%;
+  width: 90%;
   margin: 0 auto; }
+
+.archive .main-title,
+.trash .main-title {
+  padding-bottom: 20px;
+  border-bottom: 1px solid #a8a6a6; }
+
+.icon-title {
+  font-size: 20px;
+  font-size: 2rem; }
+
+.empty-section {
+  text-align: center;
+  opacity: 0.2;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.icon-main {
+  font-size: 150px;
+  font-size: 15rem; }
 
 .navigation {
   background: #e6c7d1;
@@ -200,13 +222,18 @@ body {
   height: calc(100vh - 50.5px);
   background: white;
   text-align: right; }
-  .side-bar ul li {
-    padding-top: 25px;
-    border-bottom: 1px solid grey; }
-  .side-bar ul .link {
-    color: black; }
-  .side-bar ul .link-active {
-    font-weight: bold; }
+  .side-bar ul {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; }
+    .side-bar ul li {
+      padding-top: 25px;
+      border-bottom: 1px solid grey;
+      width: 100%; }
+    .side-bar ul .link {
+      color: black; }
+    .side-bar ul .link-active {
+      font-weight: bold; }
 
 form {
   text-align: center;
@@ -254,8 +281,7 @@ input[type=submit] {
   justify-content: center;
   align-items: center;
   align-items: flex-start;
-  padding-top: 30px;
-  border-top: 1px solid #a8a6a6; }
+  padding-top: 15px; }
 
 .saved-note {
   width: 100%;

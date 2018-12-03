@@ -20,7 +20,7 @@ class Nav extends Component {
       return (
             <nav className="navigation">
                <div className="wrapper navigation-flex">
-                  <h1>Noted</h1>
+                  <h1>Noted</h1>                  
                   <ul>
                      <HamburgerMenu
                         isOpen={this.state.open}
@@ -36,10 +36,12 @@ class Nav extends Component {
                   </ul>
                </div>
 
-               {menuIsOpen &&
-                  <Sidebar />
+               { this.state.open &&
+                  <Sidebar 
+                     handleClick={this.handleClick}
+                  />
                }
-               
+
             </nav>
       )
    }
