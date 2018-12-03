@@ -4,7 +4,7 @@ import firebase from './Other JS files/firebase';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faArchive } from '@fortawesome/free-solid-svg-icons'
-import Nav from './Nav';
+import Nav from './Components/Nav';
 import Notes from './Components/AddNotes';
 import Archive from './Components/Archive';
 import Trash from './Components/Trash';
