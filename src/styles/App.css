@@ -218,12 +218,12 @@ body {
 
 .side-bar {
   position: absolute;
-  top: 50.5px;
-  right: 0;
+  width: 100%;
   z-index: 1000;
   height: calc(100vh - 50.5px);
   background: white;
-  text-align: right; }
+  text-align: right;
+  transition: transform 0.4s ease-in; }
   .side-bar ul {
     display: flex;
     flex-direction: column;
@@ -238,12 +238,10 @@ body {
       font-weight: bold; }
 
 .not-visible {
-  left: 1000px;
-  transition: all linear 0.7s; }
+  transform: translateX(100%); }
 
 .visible {
-  left: 0;
-  transition: all linear 0.5s; }
+  transform: translateX(0); }
 
 form {
   text-align: center;

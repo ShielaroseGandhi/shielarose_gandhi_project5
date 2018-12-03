@@ -1,11 +1,13 @@
 .side-bar {
    position: absolute;
-   top: 50.5px;
-   right: 0;
+   // top: 50.5px;
+   // right: 0;
+   width: 100%;
    z-index: 1000;
    height: calc(100vh - 50.5px);
    background: white;
    text-align: right;
+   transition: transform 0.4s ease-in;
    ul {
       display: flex;
       flex-direction: column;
@@ -25,11 +27,9 @@
 }
 
 .not-visible {
-   left: 1000px;
-   transition: all linear 0.7s;
+   transform: translateX(100%);
 }
 
 .visible {
-   left: 0;
-   transition: all linear 0.5s;
+   transform: translateX(0);
 }
