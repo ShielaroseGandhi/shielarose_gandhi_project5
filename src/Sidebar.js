@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = (props) => {
       return (
-         <div className="side-bar">
+         <div className={`${props.currentState} side-bar`}>
             <ul className="wrapper">
                <li>
                   <NavLink exact to="/" className="link" activeClassName="link-active" onClick={props.handleClick}>Notes</NavLink> 

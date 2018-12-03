@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import NoteDisplay from './NoteDisplay';
 import autosize from 'autosize';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStickyNote } from '@fortawesome/free-solid-svg-icons'
 
 class Notes extends Component {
    constructor(){
@@ -64,7 +66,11 @@ class Notes extends Component {
                   archiveHandler={archiveHandler}
                />
                :
-               <p>no notes</p>
+               <div className="empty-section main-page">
+                  <FontAwesomeIcon icon={faStickyNote} className="icon-main" aria-hidden title="Notes" />
+                  <span className="visuallyhidden">Notes</span>
+                  <p>Your notes will appear here</p>
+               </div> 
             }
 
          </main>

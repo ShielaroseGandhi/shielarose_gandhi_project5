@@ -160,7 +160,8 @@ html {
 
 body {
   font-size: 16px;
-  font-size: 1.6rem; }
+  font-size: 1.6rem;
+  overflow-x: hidden; }
 
 .wrapper {
   max-width: 1280px;
@@ -174,12 +175,11 @@ body {
 
 .archive .main-title,
 .trash .main-title {
+  font-size: 30px;
+  font-size: 3rem;
   padding-bottom: 20px;
-  border-bottom: 1px solid #a8a6a6; }
-
-.icon-title {
-  font-size: 20px;
-  font-size: 2rem; }
+  border-bottom: 1px solid #a8a6a6;
+  text-align: right; }
 
 .empty-section {
   text-align: center;
@@ -189,6 +189,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center; }
+
+.main-page {
+  height: 50vh; }
 
 .icon-main {
   font-size: 150px;
@@ -218,7 +221,6 @@ body {
   top: 50.5px;
   right: 0;
   z-index: 1000;
-  width: 100%;
   height: calc(100vh - 50.5px);
   background: white;
   text-align: right; }
@@ -235,10 +237,19 @@ body {
     .side-bar ul .link-active {
       font-weight: bold; }
 
+.not-visible {
+  left: 1000px;
+  transition: all linear 0.7s; }
+
+.visible {
+  left: 0;
+  transition: all linear 0.5s; }
+
 form {
   text-align: center;
   margin: 50px auto 0 auto;
-  width: 100%; }
+  width: 100%;
+  border-bottom: 1px solid #a8a6a6; }
 
 .note-container {
   box-shadow: 0 0 5px gray;

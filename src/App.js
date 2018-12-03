@@ -3,7 +3,7 @@ import './styles/App.css';
 import firebase from './firebase';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashAlt, faArchive} from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faArchive } from '@fortawesome/free-solid-svg-icons'
 import Nav from './Nav';
 import Notes from './Notes';
 import Archive from './Archive';
@@ -135,7 +135,8 @@ class App extends Component {
               render={() => (
                 <section className="wrapper archive">
                   <h2 className="main-title">
-                    Archive <FontAwesomeIcon icon={faArchive} className="icon-title" />
+                    <FontAwesomeIcon icon={faArchive} className="icon-title" title="Archive" />
+                    <span className="visuallyhidden">Archive</span>
                   </h2>
                   { archivedNotes.length > 0
                     ? 
@@ -146,7 +147,8 @@ class App extends Component {
                       />
                     :
                     <div className="empty-section">
-                      <FontAwesomeIcon icon={faArchive} className="icon-main"/>
+                      <FontAwesomeIcon icon={faArchive} className="icon-main" aria-hidden title="Archive" />
+                      <span className="visuallyhidden">Archive</span>
                       <p>You have nothing in your archive</p>
                     </div> 
                   }
@@ -158,7 +160,8 @@ class App extends Component {
               render={() => (
                 <section className="wrapper trash">
                   <h2 className="main-title">
-                    Trash <FontAwesomeIcon icon={faTrashAlt} className="icon-title" />
+                    <FontAwesomeIcon icon={faTrashAlt} className="icon-title" aria-hidden title="Trash" />
+                    <span className="visuallyhidden">Trash</span>
                   </h2>
                   
                   { trashNotes.length > 0
@@ -171,7 +174,8 @@ class App extends Component {
                     />
                     :
                     <div className="empty-section">
-                      <FontAwesomeIcon icon={faTrashAlt} className="icon-main" />
+                      <FontAwesomeIcon icon={faTrashAlt} className="icon-main" aria-hidden title="Trash" />
+                      <span className="visuallyhidden">Trash</span>
                       <p>You have nothing in your trash</p>
                     </div> 
                   }

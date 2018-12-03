@@ -3,7 +3,6 @@
    top: 50.5px;
    right: 0;
    z-index: 1000;
-   width: 100%;
    height: calc(100vh - 50.5px);
    background: white;
    text-align: right;
@@ -23,4 +22,14 @@
          font-weight: bold;
       }
    }
+}
+
+.not-visible {
+   left: 1000px;
+   transition: all linear 0.7s;
+}
+
+.visible {
+   left: 0;
+   transition: all linear 0.5s;
 }

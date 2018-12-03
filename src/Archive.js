@@ -12,8 +12,11 @@ const Archive = (props) => {
                      <div className="icon-format">
                         <h2 className="saved-note-title">{note[1].title}</h2>
                         <div className="icons">
-                           <FontAwesomeIcon icon={faFolderMinus} id={note[0]} className="archive-icon icon" onClick={() => props.moveToNotesHandler(note[0])} />
-                           <FontAwesomeIcon icon={faTrashAlt} id={note[0]} className="trash-icon icon" onClick={() => props.trashHandler(note[0])} />
+                           <FontAwesomeIcon aria-hidden title="Unarchive" icon={faFolderMinus} id={note[0]} className="archive-icon icon" onClick={() => props.moveToNotesHandler(note[0])} />
+                           <span className="visuallyhidden">Unarchive</span>
+
+                           <FontAwesomeIcon aria-hidden title="Trash" icon={faTrashAlt} id={note[0]} className="trash-icon icon" onClick={() => props.trashHandler(note[0])} />
+                           <span className="visuallyhidden">Trash</span>
                         </div>
                      </div>
                      <p className="saved-note-date">{note[1].date}</p>

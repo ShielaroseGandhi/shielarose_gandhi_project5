@@ -4,6 +4,7 @@ html {
 
 body {
    @include base-font(16);
+   overflow-x: hidden;
 }
 
 .wrapper {
@@ -21,13 +22,11 @@ body {
 .archive,
 .trash {
    .main-title {
+      @include base-font(30);
       padding-bottom: 20px;
       border-bottom: 1px solid $lightgray;
+      text-align: right;
    }
-}
-
-.icon-title {
-   @include base-font(20);
 }
 
 .empty-section {
@@ -35,6 +34,10 @@ body {
    opacity: 0.2;
    height: 80vh;
    @include flex(column);
+}
+
+.main-page {
+   height: 50vh;
 }
 
 .icon-main {

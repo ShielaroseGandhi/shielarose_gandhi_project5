@@ -17,13 +17,14 @@ class Nav extends Component {
    }
 
    render() {
+      const { open } = this.state;
       return (
             <nav className="navigation">
                <div className="wrapper navigation-flex">
                   <h1>Noted</h1>                  
                   <ul>
                      <HamburgerMenu
-                        isOpen={this.state.open}
+                        isOpen={open}
                         menuClicked={this.handleClick}
                         width={18}
                         height={15}
@@ -36,11 +37,10 @@ class Nav extends Component {
                   </ul>
                </div>
 
-               { this.state.open &&
-                  <Sidebar 
-                     handleClick={this.handleClick}
-                  />
-               }
+               <Sidebar 
+                  handleClick={this.handleClick}
+                  currentState={ (open === true) ? "visible" : "not-visible" }
+               />
 
             </nav>
       )
