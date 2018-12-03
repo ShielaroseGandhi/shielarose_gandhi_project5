@@ -338,7 +338,8 @@ input[type=submit] {
   border: none;
   box-shadow: 1px 1px 2px gray; }
   input[type=submit]:hover {
-    background: #e6c7d1; }
+    background: #232323;
+    color: #fff9f9; }
 
 .note-display {
   display: flex;
