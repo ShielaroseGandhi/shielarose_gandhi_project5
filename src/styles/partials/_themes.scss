@@ -1,0 +1,43 @@
+.red-theme {
+   $userChoice: $red;
+   background: $userChoice;
+}
+
+.blue-theme {
+   $userChoice: $blue;
+   background: $userChoice;
+}
+
+.yellow-theme {
+   $userChoice: $yellow;
+   background: $userChoice;
+}
+
+.green-theme {
+   $userChoice: $green;
+   background: $userChoice;
+}
+
+.purple-theme {
+   $userChoice: $purple;
+   background: $userChoice;
+}
+
+.pink-theme {
+   $userChoice: $pink;
+   background: $userChoice;
+}
+
+.white-theme {
+   $userChoice: $white;
+   background: $userChoice;
+}
+
+.dark-theme {
+   $userChoice: $black;
+   background: $userChoice;
+   color: $white;
+}
+
+
+

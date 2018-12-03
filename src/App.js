@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faArchive } from '@fortawesome/free-solid-svg-icons'
 import Nav from './Components/Nav';
-import Notes from './Components/AddNotes';
+import AddNotes from './Components/AddNotes';
 import Archive from './Components/Archive';
 import Trash from './Components/Trash';
 import today from './Other JS files/date';
@@ -19,7 +19,8 @@ class App extends Component {
       completeNotes: [],
       menuIsOpen: false,
       title: "",
-      note: ""
+      note: "",
+      addClass: ""
     }
   }
   componentDidMount(){
@@ -43,7 +44,8 @@ class App extends Component {
       note: this.state.note,
       date: today,
       archived: false,
-      trash: false
+      trash: false,
+      addClass: ""
     }
     // push newNote into firebase
     if(this.state.note !== ""){
@@ -62,9 +64,7 @@ class App extends Component {
   }
 
   toggleMenu = () => {
-    this.setState({ 
-      menuIsOpen: !this.state.menuIsOpen 
-    });
+    this.setState({ menuIsOpen: !this.state.menuIsOpen });
   }
 
   archiveHandler = (id) => {
@@ -85,12 +85,17 @@ class App extends Component {
     noteRef.remove();
   }
 
+  handleThemeClick = (color) => (e) => {
+    this.setState({ addClass: color })
+  }
+
   render() {
     const {
       completeNotes,
       title,
       note,
       menuIsOpen,
+      addClass
     } = this.state;
 
     const archivedNotes = [];
@@ -107,19 +112,42 @@ class App extends Component {
       }
     }
 
+    let theme;
+    if (addClass === "red") {
+      theme = "red-theme"
+    } else if (addClass === "blue") {
+      theme = "blue-theme"
+    } else if (addClass === "yellow") {
+      theme = "yellow-theme"
+    } else if (addClass === "green") {
+      theme = "green-theme"
+    } else if (addClass === "purple") {
+      theme = "purple-theme"
+    } else if (addClass === "pink") {
+      theme = "pink-theme"
+    } else if (addClass === "white") {
+      theme = "white-theme"
+    } else if (addClass === "black") {
+      theme = "dark-theme"
+    } else {
+      theme = ""
+    };
+
     return (
       <Router>
         <div className="App">
           <Nav
             toggleMenu={this.toggleMenu}
             isOpen={menuIsOpen}
+            handleThemeClick={this.handleThemeClick}
+            theme={theme}
           />
           <Switch>
             <Route
               path="/"
               exact
               render={() => (
-                <Notes 
+                <AddNotes 
                   handleChange={this.handleChange} 
                   addNoteOnSubmit={this.addNoteOnSubmit}
                   title={title}
@@ -127,6 +155,7 @@ class App extends Component {
                   completeNotes={completeNotes}
                   archiveHandler={this.archiveHandler}
                   trashHandler={this.trashHandler}
+                  theme={theme}
                 />
               )}
             />
@@ -144,6 +173,7 @@ class App extends Component {
                       archive = {completeNotes.filter((note) => note[1].archived === true && note[1].trash === false)}
                       moveToNotesHandler = {this.moveToNotesHandler}
                       trashHandler={this.trashHandler}
+                      theme={theme}
                       />
                     :
                     <div className="empty-section">
@@ -171,6 +201,7 @@ class App extends Component {
                       archiveHandler={this.archiveHandler}
                       moveToNotesHandler={this.moveToNotesHandler}
                       deleteNote={this.deleteNote}
+                      theme={theme}
                     />
                     :
                     <div className="empty-section">

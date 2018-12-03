@@ -4,7 +4,7 @@ import autosize from 'autosize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStickyNote } from '@fortawesome/free-solid-svg-icons'
 
-class Notes extends Component {
+class AddNotes extends Component {
    constructor(){
       super()
       this.state = {
@@ -31,7 +31,8 @@ class Notes extends Component {
          title,
          note,
          trashHandler,
-         archiveHandler
+         archiveHandler,
+         theme
       } = this.props;
 
       const { showTitle } = this.state;
@@ -64,6 +65,7 @@ class Notes extends Component {
                   completeNotes={completeNotes.filter((note) => note[1].archived === false && note[1].trash === false)}
                   trashHandler={trashHandler}
                   archiveHandler={archiveHandler}
+                  theme={theme}
                />
                :
                <div className="empty-section main-page">
@@ -78,7 +80,7 @@ class Notes extends Component {
    }
 }
 
-export default Notes;
+export default AddNotes;
 
     //   if (snapshot.val() !== null) {
     //     const notes = Object.entries(snapshot.val());

@@ -8,7 +8,7 @@ const Archive = (props) => {
          {
             props.archive.map(note => {
                return (
-                  <div key={note[0]} className="saved-note">
+                  <div key={note[0]} className={`${props.theme} saved-note`}>
                      <div className="icon-format">
                         <h2 className="saved-note-title">{note[1].title}</h2>
                         <div className="icons">
