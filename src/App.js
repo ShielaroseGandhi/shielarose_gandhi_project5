@@ -38,15 +38,14 @@ class App extends Component {
         }, () => {
           // create a reference specific to user
           dbRef = firebase.database().ref(`/${this.state.user.uid}`)
-          dbRef.set({ name: this.state.user.displayName, theme: this.state.theme
-          })
+          // dbRef.set({ name: this.state.user.displayName, theme: this.state.theme
+          // })
         }, () => {
           // attaching our event listener to firebase
           dbRef.on("value", (snapshot) => {
             console.log(snapshot.val())
             this.setState({
               completeNotes: snapshot.val()[this.state.user.uid] || {},
-              theme: snapshot.val()[this.state.user.uid].theme            
             })
           })
         })
@@ -60,6 +59,7 @@ class App extends Component {
     e.preventDefault();
     auth.signInWithPopup(provider)
       .then(result => {
+        console.log(result)
         this.setState({
           user: result.user,
           name: result.user.displayName
