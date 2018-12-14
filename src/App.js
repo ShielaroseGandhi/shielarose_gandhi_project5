@@ -4,38 +4,78 @@ import firebase from './Other JS files/firebase';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt, faArchive } from '@fortawesome/free-solid-svg-icons'
+import LogInHomePage from './Components/LogInHomePage';
 import Nav from './Components/Nav';
 import AddNotes from './Components/AddNotes';
 import Archive from './Components/Archive';
 import Trash from './Components/Trash';
 import today from './Other JS files/date';
 
-const dbRef = firebase.database().ref();
+const provider = new firebase.auth.GoogleAuthProvider();
+const auth = firebase.auth();
+
+let dbRef;
 
 class App extends Component {
   constructor(){
     super()
     this.state = {
-      completeNotes: [],
+      user: null,
+      completeNotes: {},
       menuIsOpen: false,
       title: "",
       note: "",
-      addClass: ""
+      theme: "",
+      name: "",
     }
   }
   componentDidMount(){
-    dbRef.on('value', (snapshot) => {
-      if (snapshot.val() !== null) {
+    console.log("component")
+    auth.onAuthStateChanged(user => {
+      if (user) {
         this.setState({
-          completeNotes: Object.entries(snapshot.val())
-        })
-      } else {
-        this.setState({
-          completeNotes: []
+          user: user
+        }, () => {
+          // create a reference specific to user
+          dbRef = firebase.database().ref(`/${this.state.user.uid}`)
+          dbRef.set({ name: this.state.user.displayName, theme: this.state.theme
+          })
+        }, () => {
+          // attaching our event listener to firebase
+          dbRef.on("value", (snapshot) => {
+            console.log(snapshot.val())
+            this.setState({
+              completeNotes: snapshot.val()[this.state.user.uid] || {},
+              theme: snapshot.val()[this.state.user.uid].theme            
+            })
+          })
         })
       }
     })
+
   }
+
+  // Handle Google login -> See above
+  googleSignIn = e => {
+    e.preventDefault();
+    auth.signInWithPopup(provider)
+      .then(result => {
+        this.setState({
+          user: result.user,
+          name: result.user.displayName
+        })
+    })
+  }
+
+  signOut = () => {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        })
+      })
+  }
+
   addNoteOnSubmit = (e) => {
     e.preventDefault();
 
@@ -80,21 +120,26 @@ class App extends Component {
 
   deleteNote = noteId => {
     const firebaseKey = noteId;
-    const noteRef = firebase.database().ref(`/${firebaseKey}`);
+    const noteRef = firebase.database().ref(`/${this.state.user.uid}/${firebaseKey}`);
     noteRef.remove();
   }
 
   handleThemeClick = (color) => (e) => {
-    this.setState({ addClass: color })
+    this.setState({ 
+      theme: color 
+    }, () => {
+      dbRef.update({ theme: this.state.theme })
+    })
   }
 
   render() {
+    console.log("render");
     const {
       completeNotes,
       title,
       note,
       menuIsOpen,
-      addClass
+      theme
     } = this.state;
 
     const archivedNotes = [];
@@ -111,107 +156,122 @@ class App extends Component {
       }
     }
 
-    let theme;
-    if (addClass === "red") {
-      theme = "red-theme"
-    } else if (addClass === "blue") {
-      theme = "blue-theme"
-    } else if (addClass === "yellow") {
-      theme = "yellow-theme"
-    } else if (addClass === "green") {
-      theme = "green-theme"
-    } else if (addClass === "purple") {
-      theme = "purple-theme"
-    } else if (addClass === "pink") {
-      theme = "pink-theme"
-    } else if (addClass === "white") {
-      theme = "white-theme"
-    } else if (addClass === "black") {
-      theme = "dark-theme"
+    let addClass;
+    if (theme === "red") {
+      addClass = "red-theme"
+    } else if (theme === "blue") {
+      addClass = "blue-theme"
+    } else if (theme === "yellow") {
+      addClass = "yellow-theme"
+    } else if (theme === "green") {
+      addClass = "green-theme"
+    } else if (theme === "purple") {
+      addClass = "purple-theme"
+    } else if (theme === "pink") {
+      addClass = "pink-theme"
+    } else if (theme === "white") {
+      addClass = "white-theme"
+    } else if (theme === "black") {
+      addClass = "dark-theme"
     } else {
-      theme = ""
+      addClass = ""
     };
 
     return (
       <Router>
         <div className="App">
-          <Nav
-            toggleMenu={this.toggleMenu}
-            isOpen={menuIsOpen}
-            handleThemeClick={this.handleThemeClick}
-            theme={theme}
-          />
           <Switch>
+            {this.state.user 
+            ?
+            <React.Fragment>
+              <Nav
+                toggleMenu={this.toggleMenu}
+                isOpen={menuIsOpen}
+                handleThemeClick={this.handleThemeClick}
+                theme={theme}
+              />
+              <Route 
+                path="/"
+                exact
+                render={() => (
+                  <AddNotes
+                    handleChange={this.handleChange}
+                    addNoteOnSubmit={this.addNoteOnSubmit}
+                    title={title}
+                    note={note}
+                    completeNotes={completeNotes}
+                    archiveHandler={this.archiveHandler}
+                    trashHandler={this.trashHandler}
+                    addClass={addClass}
+                  />
+                )}
+              />
+              <Route
+                path="/archive"
+                render={() => (
+                  <section className="wrapper archive">
+                    <h2 className="main-title">
+                      <FontAwesomeIcon icon={faArchive} className="icon-title" title="Archive" />
+                      <span className="visuallyhidden">Archive</span>
+                    </h2>
+                    { archivedNotes.length > 0
+                      ? 
+                      <Archive 
+                        archive = {completeNotes.filter((note) => note[1].archived === true && note[1].trash === false)}
+                        moveToNotesHandler = {this.moveToNotesHandler}
+                        trashHandler={this.trashHandler}
+                        theme={theme}
+                        />
+                      :
+                      <div className="empty-section">
+                        <FontAwesomeIcon icon={faArchive} className="icon-main" aria-hidden title="Archive" />
+                        <span className="visuallyhidden">Archive</span>
+                        <p>You have nothing in your archive</p>
+                      </div> 
+                    }
+                    </section>
+                  )}
+              />
+              <Route
+                path="/trash"
+                render={() => (
+                  <section className="wrapper trash">
+                    <h2 className="main-title">
+                      <FontAwesomeIcon icon={faTrashAlt} className="icon-title" aria-hidden title="Trash" />
+                      <span className="visuallyhidden">Trash</span>
+                    </h2>
+                    
+                    { trashNotes.length > 0
+                      ? 
+                      <Trash
+                        trash = {completeNotes.filter((note) => note[1].trash === true)}
+                        archiveHandler={this.archiveHandler}
+                        moveToNotesHandler={this.moveToNotesHandler}
+                        deleteNote={this.deleteNote}
+                        theme={theme}
+                      />
+                      :
+                      <div className="empty-section">
+                        <FontAwesomeIcon icon={faTrashAlt} className="icon-main" aria-hidden title="Trash" />
+                        <span className="visuallyhidden">Trash</span>
+                        <p>You have nothing in your trash</p>
+                      </div> 
+                    }
+                  </section>
+                )}
+              />
+            </React.Fragment>
+            :
             <Route
               path="/"
               exact
               render={() => (
-                <AddNotes 
-                  handleChange={this.handleChange} 
-                  addNoteOnSubmit={this.addNoteOnSubmit}
-                  title={title}
-                  note={note}
-                  completeNotes={completeNotes}
-                  archiveHandler={this.archiveHandler}
-                  trashHandler={this.trashHandler}
-                  theme={theme}
+                <LogInHomePage 
+                  googleSignIn={this.googleSignIn}
                 />
               )}
             />
-            <Route
-              path="/archive"
-              render={() => (
-                <section className="wrapper archive">
-                  <h2 className="main-title">
-                    <FontAwesomeIcon icon={faArchive} className="icon-title" title="Archive" />
-                    <span className="visuallyhidden">Archive</span>
-                  </h2>
-                  { archivedNotes.length > 0
-                    ? 
-                    <Archive 
-                      archive = {completeNotes.filter((note) => note[1].archived === true && note[1].trash === false)}
-                      moveToNotesHandler = {this.moveToNotesHandler}
-                      trashHandler={this.trashHandler}
-                      theme={theme}
-                      />
-                    :
-                    <div className="empty-section">
-                      <FontAwesomeIcon icon={faArchive} className="icon-main" aria-hidden title="Archive" />
-                      <span className="visuallyhidden">Archive</span>
-                      <p>You have nothing in your archive</p>
-                    </div> 
-                  }
-                  </section>
-                )}
-            />
-            <Route
-              path="/trash"
-              render={() => (
-                <section className="wrapper trash">
-                  <h2 className="main-title">
-                    <FontAwesomeIcon icon={faTrashAlt} className="icon-title" aria-hidden title="Trash" />
-                    <span className="visuallyhidden">Trash</span>
-                  </h2>
-                  
-                  { trashNotes.length > 0
-                    ? 
-                    <Trash
-                      trash = {completeNotes.filter((note) => note[1].trash === true)}
-                      archiveHandler={this.archiveHandler}
-                      moveToNotesHandler={this.moveToNotesHandler}
-                      deleteNote={this.deleteNote}
-                      theme={theme}
-                    />
-                    :
-                    <div className="empty-section">
-                      <FontAwesomeIcon icon={faTrashAlt} className="icon-main" aria-hidden title="Trash" />
-                      <span className="visuallyhidden">Trash</span>
-                      <p>You have nothing in your trash</p>
-                    </div> 
-                  }
-                </section>
-              )}
-            />
+            }
           </Switch>
         </div>
       </Router>

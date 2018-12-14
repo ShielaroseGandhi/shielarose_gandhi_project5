@@ -24,14 +24,14 @@ class Nav extends Component {
 
    render() {
       const { open, themeOpen } = this.state;
-      const { theme } = this.props;
+      const { addClass } = this.props;
       return (
-            <nav className={`${theme} navigation`} >
+            <nav className={`${addClass} navigation`} >
                <div className="wrapper navigation-flex">
                   <h1>Noted</h1>                  
                   <ul className="navigation-options">
                      <div onClick={this.handleThemeOptionsClick}
-                        className={`${theme} theme`}>
+                        className={`${addClass} theme`}>
                         <ul 
                         className={`${(themeOpen === true) ? "show-themes" : "hide-themes"}  
                         theme-options`}>

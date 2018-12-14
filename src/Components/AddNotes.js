@@ -32,7 +32,7 @@ class AddNotes extends Component {
          note,
          trashHandler,
          archiveHandler,
-         theme
+         addClass
       } = this.props;
 
       const { showTitle } = this.state;
@@ -45,7 +45,7 @@ class AddNotes extends Component {
       }
       return (
          <main className="notes inner-wrapper">
-            <form action="">
+            <form>
                <div className="note-container">
                   <label className="visuallyhidden" htmlFor="title">Title</label>
                   {showTitle && <input onChange={handleChange} value={title} name="title" type="text" id="title" placeholder="Title" className="title"/>}
@@ -65,7 +65,7 @@ class AddNotes extends Component {
                   completeNotes={completeNotes.filter((note) => note[1].archived === false && note[1].trash === false)}
                   trashHandler={trashHandler}
                   archiveHandler={archiveHandler}
-                  theme={theme}
+                  addClass={addClass}
                />
                :
                <div className="empty-section main-page">
