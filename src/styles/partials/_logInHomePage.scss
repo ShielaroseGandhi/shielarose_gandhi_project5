@@ -12,9 +12,11 @@
    @include flex(row);
    flex-wrap: wrap;
    justify-content: space-between;
+   min-width: 400px;
    width: 30%;
    text-align: center;
    button {
+      position: relative;
       width: calc(50% - 5px);
       border: 1px solid $black;
       border-radius: 5px;
@@ -23,12 +25,15 @@
       background: $black;
       color: $white;
       box-shadow: 1px 1px 1px $black;
+      &:hover {
+         box-shadow: none;
+         top: 1px;
+         left: 1px;
+      }
    }
    .guestSignIn {
       background: none;
-      border: none;
-      width: 100%;
+      border: 1px solid $black;
       color: $black;
-      box-shadow: none;
    }
 }

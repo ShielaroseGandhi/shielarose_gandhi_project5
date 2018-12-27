@@ -24,7 +24,7 @@ class Nav extends Component {
 
    render() {
       const { open, themeOpen } = this.state;
-      const { addClass } = this.props;
+      const { addClass, logOut } = this.props;
       return (
             <nav className={`${addClass} navigation`} >
                <div className="wrapper navigation-flex">
@@ -94,6 +94,7 @@ class Nav extends Component {
                <Sidebar 
                   handleClick={this.handleClick}
                   currentState={ (open === true) ? "visible" : "not-visible" }
+                  logOut={logOut}
                />
 
             </nav>

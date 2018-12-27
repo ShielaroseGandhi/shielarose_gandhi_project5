@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import NoteDisplay from './NoteDisplay';
 import autosize from 'autosize';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStickyNote } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStickyNote } from '@fortawesome/free-solid-svg-icons';
 
 class AddNotes extends Component {
    constructor(){

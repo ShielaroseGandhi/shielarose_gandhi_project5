@@ -38,14 +38,14 @@ class App extends Component {
         }, () => {
           // create a reference specific to user
           dbRef = firebase.database().ref(`/${this.state.user.uid}`)
-          // dbRef.set({ name: this.state.user.displayName, theme: this.state.theme
-          // })
+          // dbRef.set({ name: this.state.user.displayName, theme: this.state.theme })
         }, () => {
           // attaching our event listener to firebase
           dbRef.on("value", (snapshot) => {
             console.log(snapshot.val())
             this.setState({
-              completeNotes: snapshot.val()[this.state.user.uid] || {},
+              theme: snapshot.val()[this.state.user.uid].theme,
+              completeNotes: snapshot.val()[this.state.user.uid].completeNotes || {},
             })
           })
         })
@@ -67,7 +67,7 @@ class App extends Component {
     })
   }
 
-  signOut = () => {
+  logOut = () => {
     auth.signOut()
       .then(() => {
         this.setState({
@@ -88,7 +88,7 @@ class App extends Component {
     }
     // push newNote into firebase
     if(this.state.note !== ""){
-      dbRef.push(newNote);
+      dbRef.child("completeNotes").push(newNote);
       this.setState({
         title: "",
         note: "",
@@ -188,7 +188,8 @@ class App extends Component {
                 toggleMenu={this.toggleMenu}
                 isOpen={menuIsOpen}
                 handleThemeClick={this.handleThemeClick}
-                theme={theme}
+                addClass={addClass}
+                logOut={this.logOut}
               />
               <Route 
                 path="/"

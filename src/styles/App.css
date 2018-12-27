@@ -216,9 +216,11 @@ body {
   align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
+  min-width: 400px;
   width: 30%;
   text-align: center; }
   .logInForm button {
+    position: relative;
     width: calc(50% - 5px);
     border: 1px solid #232323;
     border-radius: 5px;
@@ -227,12 +229,14 @@ body {
     background: #232323;
     color: #fff9f9;
     box-shadow: 1px 1px 1px #232323; }
+    .logInForm button:hover {
+      box-shadow: none;
+      top: 1px;
+      left: 1px; }
   .logInForm .guestSignIn {
     background: none;
-    border: none;
-    width: 100%;
-    color: #232323;
-    box-shadow: none; }
+    border: 1px solid #232323;
+    color: #232323; }
 
 .navigation {
   background: #e6c7d1;
@@ -266,6 +270,7 @@ body {
     top: 20px;
     left: -20px;
     padding: 15px 20px 0 20px;
+    z-index: 5;
     background: rgba(255, 255, 255, 0.7); }
     .theme-options li {
       width: 20px;

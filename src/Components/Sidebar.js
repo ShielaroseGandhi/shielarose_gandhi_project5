@@ -14,6 +14,9 @@ const Sidebar = (props) => {
                <li>
                   <NavLink exact to="/trash" className="link" activeClassName="link-active" onClick={props.handleClick}>Trash</NavLink>
                </li>
+               <li>
+                  <button className="logOut" onClick={props.logOut}>Log Out</button>
+               </li>
             </ul>
          </div>
       )
